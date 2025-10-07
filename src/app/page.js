@@ -1,103 +1,68 @@
-"use client";
-import { useState, useEffect } from "react";
+"use client"
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-purple-900 to-[#0f172a] text-white">
+    <main className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white">
       {/* Navbar */}
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrollY > 30 ? "bg-black/70 backdrop-blur-lg" : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-xl font-bold">Portfolio</div>
-          <div className="space-x-6 hidden md:block">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="hover:text-purple-400 transition"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
+      <nav className="flex justify-between items-center px-10 py-6">
+        <div className="text-xl font-bold">Portfolio</div>
+        <ul className="flex space-x-8">
+          <li className="hover:text-pink-400 cursor-pointer">Home</li>
+          <li className="hover:text-pink-400 cursor-pointer">About</li>
+          <li className="hover:text-pink-400 cursor-pointer">Projects</li>
+          <li className="hover:text-pink-400 cursor-pointer">Skills</li>
+          <li className="hover:text-pink-400 cursor-pointer">Contact</li>
+        </ul>
       </nav>
 
       {/* Hero Section */}
-      <section
-        id="home"
-        className="flex flex-col items-center justify-center text-center px-4 pt-36 pb-24"
-      >
-        {/* Profile Emoji */}
-        <div className="mb-8">
-          <div className="w-40 h-40 rounded-full border-4 border-pink-400 flex items-center justify-center text-6xl bg-slate-900 shadow-lg">
-            🎓
-          </div>
+      <section className="flex flex-col items-center justify-center text-center px-6 py-16">
+        {/* Avatar */}
+        <div className="rounded-full border-4 border-pink-500 w-40 h-40 flex items-center justify-center mb-6">
+          <span className="text-6xl">🧑‍🎓</span>
         </div>
 
         {/* Heading */}
-        <h1 className="text-5xl md:text-6xl font-bold mb-4">
-          Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Anushree 
-          </span>
+        <h1 className="text-4xl sm:text-6xl font-bold mb-4">
+          Hi, I'm <span className="text-pink-400">Anushree</span>
         </h1>
 
-        {/* Subtext */}
-        <h2 className="text-2xl text-gray-300 mb-4">
+        {/* Subtitle */}
+        <h2 className="text-xl sm:text-2xl font-medium text-gray-300 mb-4">
           Full Stack Developer & UI/UX Designer
         </h2>
 
         {/* Description */}
-        <p className="text-gray-400 max-w-2xl mb-10">
-          I create beautiful, functional, and user-centered digital experiences.
-          Let's build something amazing together.
+        <p className="max-w-xl text-sm sm:text-base text-gray-400 mb-10">
+          I create beautiful, functional, and user-centered digital experiences. Let&apos;s build something amazing together.
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex space-x-4">
           <a
             href="#projects"
-            className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
+            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-6 py-3 rounded-full transition"
           >
             View My Work →
           </a>
           <a
-            href="/cv.pdf"
+            href="/Prakash_CV.pdf" // Replace with your actual file
             download
-            className="px-6 py-3 rounded-full border border-purple-500 text-purple-300 hover:bg-purple-600 hover:text-white transition duration-300 flex items-center justify-center gap-2"
+            className="border-2 border-pink-500 text-white px-6 py-3 rounded-full hover:bg-pink-500 transition flex items-center space-x-2"
           >
-            Download CV
+            <span>Download CV</span>
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="w-5 h-5"
               fill="none"
-              viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth="2"
+              viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4v16m0 0l-4-4m4 4l4-4"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
             </svg>
           </a>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

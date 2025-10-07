@@ -1,0 +1,229 @@
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Github, Linkedin, Code, Award, BookOpen, ExternalLink } from 'lucide-react';
+
+export default function StudentPortfolio() {
+  const [activeSection, setActiveSection] = useState('about');
+
+  const student = {
+    name: "Alex Johnson",
+    title: "Computer Science Student",
+    location: "San Francisco, CA",
+    email: "alex.johnson@email.com",
+    phone: "+1 (555) 123-4567",
+    github: "github.com/alexjohnson",
+    linkedin: "linkedin.com/in/alexjohnson",
+    bio: "Passionate computer science student with a keen interest in web development and artificial intelligence. Eager to leverage my skills in real-world projects and contribute to innovative solutions.",
+    
+    skills: [
+      { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
+      { category: "Backend", items: ["Node.js", "Python", "Express", "MongoDB"] },
+      { category: "Tools", items: ["Git", "Docker", "VS Code", "Figma"] },
+      { category: "Other", items: ["Problem Solving", "Team Collaboration", "Agile"] }
+    ],
+    
+    projects: [
+      {
+        title: "E-Commerce Platform",
+        description: "Built a full-stack e-commerce application with user authentication, product management, and payment integration.",
+        tech: ["Next.js", "MongoDB", "Stripe"],
+        link: "#"
+      },
+      {
+        title: "Task Management App",
+        description: "Developed a collaborative task manager with real-time updates and team workspace features.",
+        tech: ["React", "Firebase", "Material-UI"],
+        link: "#"
+      },
+      {
+        title: "Weather Dashboard",
+        description: "Created an interactive weather dashboard using external APIs with data visualization.",
+        tech: ["JavaScript", "Chart.js", "OpenWeather API"],
+        link: "#"
+      }
+    ],
+    
+    education: [
+      {
+        degree: "Bachelor of Science in Computer Science",
+        institution: "University of California",
+        period: "2022 - 2026",
+        gpa: "3.8/4.0"
+      }
+    ],
+    
+    certifications: [
+      "AWS Cloud Practitioner",
+      "Meta Front-End Developer",
+      "Google Data Analytics"
+    ]
+  };
+
+  const sections = [
+    { id: 'about', label: 'About', icon: BookOpen },
+    { id: 'skills', label: 'Skills', icon: Code },
+    { id: 'projects', label: 'Projects', icon: ExternalLink },
+    { id: 'education', label: 'Education', icon: Award }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="max-w-6xl mx-auto p-6">
+        {/* Header Card */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-6 border border-white/20 shadow-2xl">
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg">
+              {student.name.split(' ').map(n => n[0]).join('')}
+            </div>
+            
+            <div className="flex-1 text-center md:text-left">
+              <h1 className="text-4xl font-bold text-white mb-2">{student.name}</h1>
+              <p className="text-xl text-purple-300 mb-4">{student.title}</p>
+              
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start text-gray-300">
+                <div className="flex items-center gap-2">
+                  <Mail size={16} />
+                  <span className="text-sm">{student.email}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone size={16} />
+                  <span className="text-sm">{student.phone}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin size={16} />
+                  <span className="text-sm">{student.location}</span>
+                </div>
+              </div>
+              
+              <div className="flex gap-4 mt-4 justify-center md:justify-start">
+                <a href={`https://${student.github}`} className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition">
+                  <Github className="text-white" size={20} />
+                </a>
+                <a href={`https://${student.linkedin}`} className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition">
+                  <Linkedin className="text-white" size={20} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-2 mb-6 border border-white/20 shadow-2xl">
+          <div className="flex flex-wrap gap-2">
+            {sections.map(section => {
+              const Icon = section.icon;
+              return (
+                <button
+                  key={section.id}
+                  onClick={() => setActiveSection(section.id)}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition ${
+                    activeSection === section.id
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                      : 'text-gray-300 hover:bg-white/10'
+                  }`}
+                >
+                  <Icon size={18} />
+                  {section.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Content Area */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
+          {activeSection === 'about' && (
+            <div className="text-gray-200 space-y-4">
+              <h2 className="text-3xl font-bold text-white mb-4">About Me</h2>
+              <p className="text-lg leading-relaxed">{student.bio}</p>
+              
+              <div className="mt-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Certifications</h3>
+                <div className="grid gap-3">
+                  {student.certifications.map((cert, idx) => (
+                    <div key={idx} className="bg-white/5 p-4 rounded-lg border border-white/10">
+                      <div className="flex items-center gap-3">
+                        <Award className="text-purple-400" size={20} />
+                        <span className="text-lg">{cert}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeSection === 'skills' && (
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">Technical Skills</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {student.skills.map((skillGroup, idx) => (
+                  <div key={idx} className="bg-white/5 p-6 rounded-xl border border-white/10">
+                    <h3 className="text-xl font-bold text-purple-300 mb-4">{skillGroup.category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {skillGroup.items.map((skill, i) => (
+                        <span
+                          key={i}
+                          className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white px-4 py-2 rounded-lg text-sm border border-purple-400/30"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeSection === 'projects' && (
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">Featured Projects</h2>
+              <div className="grid gap-6">
+                {student.projects.map((project, idx) => (
+                  <div key={idx} className="bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                      <a href={project.link} className="text-purple-400 hover:text-purple-300">
+                        <ExternalLink size={20} />
+                      </a>
+                    </div>
+                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, i) => (
+                        <span key={i} className="bg-purple-500/20 text-purple-200 px-3 py-1 rounded-full text-sm">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeSection === 'education' && (
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">Education</h2>
+              {student.education.map((edu, idx) => (
+                <div key={idx} className="bg-white/5 p-6 rounded-xl border border-white/10">
+                  <h3 className="text-2xl font-bold text-white mb-2">{edu.degree}</h3>
+                  <p className="text-xl text-purple-300 mb-2">{edu.institution}</p>
+                  <div className="flex flex-wrap gap-4 text-gray-300">
+                    <span>{edu.period}</span>
+                    <span>•</span>
+                    <span className="text-purple-400 font-semibold">GPA: {edu.gpa}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="mt-6 text-center text-gray-400 text-sm">
+          <p>© 2025 {student.name}. Built with Next.js & Tailwind CSS</p>
+        </div>
+      </div>
+    </div>
+  );
+}
