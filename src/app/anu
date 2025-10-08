@@ -5,13 +5,13 @@ export default function StudentPortfolio() {
   const [activeSection, setActiveSection] = useState('about');
 
   const student = {
-    name: "Alex Johnson",
+    name: "Anushree E M",
     title: "Computer Science Student",
-    location: "San Francisco, CA",
-    email: "alex.johnson@email.com",
-    phone: "+1 (555) 123-4567",
-    github: "github.com/alexjohnson",
-    linkedin: "linkedin.com/in/alexjohnson",
+    location: "Bangalore",
+    email: "anushreeemgowda@email.com",
+    phone: "+91 7892478275",
+    github: "github.com/anushreeemgowda-madesh",
+    linkedin: "www.linkedin.com/in/anushree-e-m-9ba338384",
     bio: "Passionate computer science student with a keen interest in web development and artificial intelligence. Eager to leverage my skills in real-world projects and contribute to innovative solutions.",
     
     skills: [
@@ -45,8 +45,8 @@ export default function StudentPortfolio() {
     education: [
       {
         degree: "Bachelor of Science in Computer Science",
-        institution: "University of California",
-        period: "2022 - 2026",
+        institution: " Bangalore University ",
+        period: "2023 - 2026",
         gpa: "3.8/4.0"
       }
     ],
@@ -95,10 +95,10 @@ export default function StudentPortfolio() {
               </div>
               
               <div className="flex gap-4 mt-4 justify-center md:justify-start">
-                <a href={`https://${student.github}`} className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition">
+                <a href={`https://github.com/anushreeemgowda-madesh`} className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition">
                   <Github className="text-white" size={20} />
                 </a>
-                <a href={`https://${student.linkedin}`} className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition">
+                <a href={`www.linkedin.com/in/anushree-e-m-9ba338384`} className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition">
                   <Linkedin className="text-white" size={20} />
                 </a>
               </div>
